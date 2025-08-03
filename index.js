@@ -26,7 +26,7 @@ app.get('/mp4', async (req, res) => {
 
   try {
     const info = await ytdl.getInfo(videoUrl);
-    const format = ytdl.chooseFormat(info.formats, { quality: '18' }); // 360p MP4
+    const format = ytdl.chooseFormat(info.formats, { filter: 'videoandaudio', container: 'mp4' });
 
     if (!format || !format.url) {
       return res.status(500).json({ success: false, message: '❌ Failed to get MP4 format' });
